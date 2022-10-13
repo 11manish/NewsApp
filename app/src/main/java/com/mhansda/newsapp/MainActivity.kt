@@ -8,7 +8,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import com.mhansda.newsapp.animation.LoadingNewsListShimmer
 import com.mhansda.newsapp.ui.theme.NewsAppTheme
 import com.mhansda.newsapp.viewmodel.NewsViewModel
 import com.mhansda.newsapp.widget.NewsCard
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
 fun MainContent(viewModel : NewsViewModel){
     val data = viewModel.data.value
     if (data.isLoading == true){
-        Log.d("TAG", "MainContent: Loading . . . . .")
+        LoadingNewsListShimmer(imageHeight = 230.dp)
     }else{
         LazyColumn{
             items(items = data.data!!.articles){ article ->
